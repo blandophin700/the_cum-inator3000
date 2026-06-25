@@ -4,45 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - O Clarim Diário</title>
-    <!-- Google Fonts import for a classic newspaper/serif style (Lorem Ipsum look) -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     
     <style>
         body {
-            background-color: #f4f4f4;
-            /* Applying the new serif font globally */
+            /* Imagem de fundo aplicada globalmente */
+            background-image: url('sua-imagem-de-fundo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             font-family: 'Playfair Display', Georgia, serif;
             margin: 0;
             padding: 20px;
         }
         header {
-            /* Mint-green background color */
-            background-color: #98FF98; 
-            color: #1a331a;
+            /* Fundo branco desbotado estilo jornal antigo */
+            background-color: #f5f2eb; 
+            /* Cor do texto alterada para preto */
+            color: #000000;
             text-align: center;
             max-width: 800px;
             margin: 0 auto 30px auto;
             padding: 24px;
             border-radius: 8px;
-            /* Lime-green glow effect behind the header */
-            box-shadow: 0 0 30px 10px rgba(50, 205, 50, 0.6); 
+            /* Brilho verde-lima removido e substituído por uma sombra sutil */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
         }
         main {
-            background-color: #FFFFFF;
+            /* Fundo do conteúdo também em branco desbotado para combinar */
+            background-color: #fcfaf2;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         article {
             display: flex;
             gap: 20px;
             margin-bottom: 20px;
             padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #ddd;
         }
         img {
             width: 80px;
@@ -52,7 +56,7 @@
         }
         .article-author {
             font-weight: bold;
-            color: #555;
+            color: #333;
             font-style: italic;
         }
         button {
@@ -71,40 +75,28 @@
 </head>
 <body>
     <header>
-        <h1>O Clarim Diário</h1>
-        <p>Vou compartilhar um monte de coisa sem sentido e aleatoriamente, não prometo absolutamente NADA</p>
+        <h1>Título do Seu Blog</h1>
+        <p>Subtítulo ou descrição do seu blog aqui</p>
     </header>
 
     <main>
+        <!-- Template de Artigo (Copie e cole este bloco para criar novos posts) -->
         <article>
-            <img src="download (2).jfif" alt="imagem do único rei de skyrim">
+            <img src="caminho-da-imagem.jpg" alt="Descrição da imagem">
             <div>
-                <h2>Minha notícia aí</h2>
-                <p class="article-author">Por: Ulfric Stormcloack</p>
-                <p>Israel vence a copa e compra os próximos 30 jogos! Goyims vão a loucura. "Tel Aviv recomenda" diz Zé Sulista, o responsável pelo hit do ano "As Moranguete Na Minha RAM" </p>
+                <h2>Título da Notícia</h2>
+                <p class="article-author">Por: Nome do Autor</p>
+                <p>O texto do seu artigo ou notícia deve ser inserido neste espaço.</p>
                 <button>❤️ <span>0</span></button>
                 <button>👍 <span>0</span></button>
-            </div>
-        </article>
-
-        <article>
-            <img src="download (3).jfif" alt="bastardo">
-            <div>
-                <h2>Extra, Extra!</h2>
-                <p class="article-author">Por: O Yarl de Falkreath</p>
-                <p>Treinador do brasil Carlos Ancelotti transforma Neymar em robocopa para ele poder jogar as próximas 30 copas, "azul goiaba", diz o treinador</p>
-                <button>🫃 <span>0</span></button>
-                <button>🦤 <span>0</span></button>
             </div>
         </article>
     </main>
 
     <script>
-        // Selecting all reaction buttons
         const buttons = document.querySelectorAll("button");
 
         buttons.forEach(function (button) {
-            // Adding a click event listener to each button
             button.addEventListener("click", function handleButtonClick() {
                 let currentCounter = button.querySelector("span");
                 let countValue = parseInt(currentCounter.textContent);
