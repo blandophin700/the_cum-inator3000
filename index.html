@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - The Daily Bugle</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <!-- Links do Google Fonts corrigidos para carregar a fonte Playfair Display corretamente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     
     <style>
         body {
@@ -75,14 +76,27 @@
     </header>
 
     <main>
+        <!-- Artigo 1 -->
         <article>
-            <img src="Cicerio.jpg" alt="Image description">
+            <img src="image-path.jpg" alt="Image description">
             <div>
                 <h2>Israel larpa futebol e vence de Vaticano em 271x67!</h2>
                 <p class="article-author">By: Cícero</p>
                 <p>Israel vence a copa de lavada!</p>
-                <button>🇮🇱<span>0</span></button>
+                <button>🇮🇱 <span>0</span></button>
                 <button>🇻🇦 <span>0</span></button>
+            </div>
+        </article>
+
+        <!-- Artigo 2 (Duplicado e Customizado) -->
+        <article>
+            <img src="image-path-2.jpg" alt="Image description">
+            <div>
+                <h2>Bomba: Estudo científico comprova que o café de ontem esquentado no micro-ondas previne a paciência!</h2>
+                <p class="article-author">By: Enzo</p>
+                <p>Pesquisadores da universidade do zap afirmam que duas xícaras de café requentado reduzem em 99% as chances de aguentar reunião de alinhamento na segunda-feira.</p>
+                <button>☕ <span>0</span></button>
+                <button>🤯 <span>0</span></button>
             </div>
         </article>
     </main>
