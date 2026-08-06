@@ -67,12 +67,17 @@
         button:hover {
             background-color: #f0f0f0;
         }
+        /* Estilização básica para a lista do novo post */
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>o Clarim Diário</h1>
-        <p>Se quiser ver notícia de verdade, esse NÃO é o lugar! Pesquisas indicam que a Choquei tem fontes mais confiáveis que essa página!</p>
+        <p>Se quiser ver notícia de verdade, esse NÃO é o lugar! Pesquisas indicam que a Choquei tempo fontes mais confiáveis que essa página!</p>
     </header>
 
     <main>
@@ -88,7 +93,7 @@
             </div>
         </article>
 
-        <!-- Artigo 2 (Duplicado e Customizado) -->
+        <!-- Artigo 2 (Original) -->
         <article>
             <img src="Screenshot_20260625_211537_TikTok.jpg" alt="Image description">
             <div>
@@ -96,6 +101,27 @@
                 <p class="article-author">By: Ulfric Stormcloak</p>
                 <p>Durante entrevista bem-humorada, o treinador da seleção brasileira diz que não vai transformar o nosso menino Ney em Raiden, do jogo Metal Gear Rising
                 "que penaaaa que pena" diz Jorge Ben Jor, compositor brasileiro</p>
+                <button>😭 <span>0</span></button>
+                <button>🤯 <span>0</span></button>
+            </div>
+        </article>
+
+        <!-- Artigo 3 (Clone do Artigo 2 - Modificado) -->
+        <article>
+            <!-- Imagem deixada em branco (sem src) -->
+            <img src="" alt="Post image template">
+            <div>
+                <h2>Título do Post Clonado</h2>
+                <!-- Nome do autor deixado em branco -->
+                <p class="article-author">By: </p>
+                
+                <!-- Conteúdo modificado para lista em tópicos -->
+                <ul>
+                    <li>Primeiro tópico importante da notícia.</li>
+                    <li>Segundo detalhe ou fato relevante.</li>
+                    <li>Considerações finais do acontecimento.</li>
+                </ul>
+
                 <button>😭 <span>0</span></button>
                 <button>🤯 <span>0</span></button>
             </div>
