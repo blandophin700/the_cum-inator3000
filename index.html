@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +67,7 @@
         button:hover {
             background-color: #f0f0f0;
         }
-        
+        /* Destaque visual para o emoji ativo */
         button.active {
             background-color: #e6dfcc;
             border-color: #8b7d6b;
@@ -87,20 +86,19 @@
     </header>
 
     <main>
-
+        <!-- Artigo 1 -->
         <article data-article-id="artigo-israel">
             <img src="Cicero_(Skyrim).webp" alt="Image description">
             <div>
                 <h2>Israel larpa futebol e vence de Vaticano em 69x67!</h2>
                 <p class="article-author">By: Cícero</p>
                 <p>Israel vence a copa de lavada!</p>
-                
-                <button data-emoji="israel">🇮🇱 <span>14</span></button>
-                <button data-emoji="vaticano">🇻🇦 <span>3</span></button>
+                <button data-emoji="israel">🇮🇱 <span>0</span></button>
+                <button data-emoji="vaticano">🇻🇦 <span>0</span></button>
             </div>
         </article>
 
-        
+        <!-- Artigo 2 -->
         <article data-article-id="artigo-ancelotti">
             <img src="download.jpg" alt="Image description">
             <div>
@@ -108,12 +106,12 @@
                 <p class="article-author">By: Miraak</p>
                 <p>Durante entrevista bem-humorada, o treinador da seleção brasileira diz que não vai transformar o nosso menino Ney em Raiden, do jogo Metal Gear Rising
                 "que penaaaa que pena" diz Jorge Ben Jor, compositor brasileiro</p>
-                <button data-emoji="choro">😭 <span>42</span></button>
-                <button data-emoji="mente-explodiu">🤯 <span>89</span></button>
+                <button data-emoji="choro">😭 <span>0</span></button>
+                <button data-emoji="mente-explodiu">🤯 <span>0</span></button>
             </div>
         </article>
 
-        
+        <!-- Artigo 3 -->
         <article data-article-id="artigo-tecnologia">
             <img src="images.webp" alt="desc.">
             <div>
@@ -129,7 +127,7 @@
                     <li>Falta de contato real: Reduz a habilidade social do ser humano</li>
                     <li>Riscos de segurança: Abre espaço para golpes, fraudes digitais e vazamento de dados</li>
                 </ul>
-                <button data-emoji="suquinho">🧃 <span>7</span></button>
+                <button data-emoji="suquinho">🧃 <span>0</span></button>
             </div>
         </article>
     </main>
@@ -143,12 +141,14 @@
                 const buttons = article.querySelectorAll("button");
                 const storageKey = `reacted_${articleId}`;
 
-                
+                // Verifica se o usuário já votou neste artigo antes e atualiza a tela
                 const savedReaction = localStorage.getItem(storageKey);
                 if (savedReaction) {
                     const activeBtn = article.querySelector(`button[data-emoji="${savedReaction}"]`);
                     if (activeBtn) {
                         activeBtn.classList.add("active");
+                        let counter = activeBtn.querySelector("span");
+                        counter.textContent = "1"; // Garante que exibe 1 se o usuário já votou localmente
                     }
                 }
 
@@ -158,13 +158,13 @@
                         const currentReaction = localStorage.getItem(storageKey);
 
                         if (currentReaction === emoji) {
-                            
+                            // Clicou no mesmo emoji: desfaz o voto
                             localStorage.removeItem(storageKey);
                             updateCounter(button, -1);
                             button.classList.remove("active");
                         } 
                         else if (currentReaction) {
-                            
+                            // Trocou de emoji: tira o ponto do antigo e coloca no novo
                             const oldButton = article.querySelector(`button[data-emoji="${currentReaction}"]`);
                             if (oldButton) {
                                 updateCounter(oldButton, -1);
@@ -176,7 +176,7 @@
                             button.classList.add("active");
                         } 
                         else {
-                            
+                            // Primeiro voto no artigo
                             localStorage.setItem(storageKey, emoji);
                             updateCounter(button, 1);
                             button.classList.add("active");
