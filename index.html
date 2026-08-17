@@ -1,12 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - The Daily Bugle</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     
     <style>
         body {
@@ -62,11 +63,17 @@
             background-color: #fff;
             border-radius: 4px;
             font-family: inherit;
+            transition: all 0.2s ease;
         }
         button:hover {
             background-color: #f0f0f0;
         }
-        /* Estilização básica para a lista do novo post */
+        
+        button.active {
+            background-color: #e6dfcc;
+            border-color: #8b7d6b;
+            font-weight: bold;
+        }
         ul {
             margin: 10px 0;
             padding-left: 20px;
@@ -80,41 +87,38 @@
     </header>
 
     <main>
-        <!-- Artigo 1 -->
-        <article>
+
+        <article data-article-id="artigo-israel">
             <img src="Cicero_(Skyrim).webp" alt="Image description">
             <div>
                 <h2>Israel larpa futebol e vence de Vaticano em 69x67!</h2>
                 <p class="article-author">By: Cícero</p>
                 <p>Israel vence a copa de lavada!</p>
-                <button>🇮🇱 <span>0</span></button>
-                <button>🇻🇦 <span>0</span></button>
+                
+                <button data-emoji="israel">🇮🇱 <span>14</span></button>
+                <button data-emoji="vaticano">🇻🇦 <span>3</span></button>
             </div>
         </article>
 
-        <!-- Artigo 2 (Original) -->
-        <article>
+        
+        <article data-article-id="artigo-ancelotti">
             <img src="download.jpg" alt="Image description">
             <div>
                 <h2>Ancelotti afirma que não vai transformar Neymar em Raiden de Metal Gear Rising</h2>
                 <p class="article-author">By: Miraak</p>
                 <p>Durante entrevista bem-humorada, o treinador da seleção brasileira diz que não vai transformar o nosso menino Ney em Raiden, do jogo Metal Gear Rising
                 "que penaaaa que pena" diz Jorge Ben Jor, compositor brasileiro</p>
-                <button>😭 <span>0</span></button>
-                <button>🤯 <span>0</span></button>
+                <button data-emoji="choro">😭 <span>42</span></button>
+                <button data-emoji="mente-explodiu">🤯 <span>89</span></button>
             </div>
         </article>
 
-       
-        <article>
-           
+        
+        <article data-article-id="artigo-tecnologia">
             <img src="images.webp" alt="desc.">
             <div>
                 <h2>Tecnologia: bom ou ruim?</h2>
-                
                 <p class="article-author">By: Gandalf, o Cinzento</p>
-                
-                
                 <ul>
                     <li>Vantagens:</li>
                     <li>Instantaneidade: Permite falar com qualquer pessoa em tempo real, não importa a distância.</li>
@@ -124,23 +128,68 @@
                     <li>Notícias falsas: Acelera a difusão de mentiras (fake news) que confundem a sociedade</li>
                     <li>Falta de contato real: Reduz a habilidade social do ser humano</li>
                     <li>Riscos de segurança: Abre espaço para golpes, fraudes digitais e vazamento de dados</li>
-                    
                 </ul>
-
-                <button>🧃 <span>0</span></button>
+                <button data-emoji="suquinho">🧃 <span>7</span></button>
             </div>
         </article>
     </main>
 
     <script>
-        const buttons = document.querySelectorAll("button");
+        document.addEventListener("DOMContentLoaded", () => {
+            const articles = document.querySelectorAll("article");
 
-        buttons.forEach(function (button) {
-            button.addEventListener("click", function handleButtonClick() {
-                let currentCounter = button.querySelector("span");
-                let countValue = parseInt(currentCounter.textContent);
-                currentCounter.textContent = countValue + 1;
+            articles.forEach(article => {
+                const articleId = article.getAttribute("data-article-id");
+                const buttons = article.querySelectorAll("button");
+                const storageKey = `reacted_${articleId}`;
+
+                
+                const savedReaction = localStorage.getItem(storageKey);
+                if (savedReaction) {
+                    const activeBtn = article.querySelector(`button[data-emoji="${savedReaction}"]`);
+                    if (activeBtn) {
+                        activeBtn.classList.add("active");
+                    }
+                }
+
+                buttons.forEach(button => {
+                    button.addEventListener("click", () => {
+                        const emoji = button.getAttribute("data-emoji");
+                        const currentReaction = localStorage.getItem(storageKey);
+
+                        if (currentReaction === emoji) {
+                            
+                            localStorage.removeItem(storageKey);
+                            updateCounter(button, -1);
+                            button.classList.remove("active");
+                        } 
+                        else if (currentReaction) {
+                            
+                            const oldButton = article.querySelector(`button[data-emoji="${currentReaction}"]`);
+                            if (oldButton) {
+                                updateCounter(oldButton, -1);
+                                oldButton.classList.remove("active");
+                            }
+                            
+                            localStorage.setItem(storageKey, emoji);
+                            updateCounter(button, 1);
+                            button.classList.add("active");
+                        } 
+                        else {
+                            
+                            localStorage.setItem(storageKey, emoji);
+                            updateCounter(button, 1);
+                            button.classList.add("active");
+                        }
+                    });
+                });
             });
+
+            function updateCounter(button, change) {
+                let currentCounter = button.querySelector("span");
+                let countValue = parseInt(currentCounter.textContent) || 0;
+                currentCounter.textContent = Math.max(0, countValue + change);
+            }
         });
     </script>
 </body>
