@@ -6,7 +6,7 @@
     <title>Blog - The Daily Bugle</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
     
     <style>
         body {
@@ -67,7 +67,7 @@
         button:hover {
             background-color: #f0f0f0;
         }
-        /* Destaque visual para o emoji ativo */
+       
         button.active {
             background-color: #e6dfcc;
             border-color: #8b7d6b;
@@ -76,6 +76,19 @@
         ul {
             margin: 10px 0;
             padding-left: 20px;
+        }
+        
+        .article-attachments {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .article-attachments img {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            border: 1px solid #ccc;
+            border-radius: 6px;
         }
     </style>
 </head>
@@ -86,7 +99,7 @@
     </header>
 
     <main>
-        <!-- Artigo 1 -->
+       
         <article data-article-id="artigo-israel">
             <img src="Cicero_(Skyrim).webp" alt="Image description">
             <div>
@@ -98,7 +111,7 @@
             </div>
         </article>
 
-        <!-- Artigo 2 -->
+        
         <article data-article-id="artigo-ancelotti">
             <img src="download.jpg" alt="Image description">
             <div>
@@ -111,7 +124,7 @@
             </div>
         </article>
 
-        <!-- Artigo 3 -->
+        
         <article data-article-id="artigo-tecnologia">
             <img src="images.webp" alt="desc.">
             <div>
@@ -130,6 +143,33 @@
                 <button data-emoji="suquinho">🧃 <span>0</span></button>
             </div>
         </article>
+
+       
+        <article data-article-id="artigo-recuperacao">
+            
+            <img src="perfil-autor.jpg" alt="Foto do Autor">
+            <div>
+               
+                <div>
+                    <h3>Atividade de recuperação do 2º trimestre</h3>
+                </div>
+                <p class="article-author">By: Professor Titular</p>
+                
+                
+                <p>Insira aqui o texto descritivo da atividade de recuperação, detalhando quais serão os critérios de avaliação, os capítulos abordados e o formato de entrega esperado pelos alunos.</p>
+                <p>Este é o segundo parágrafo livre onde você pode complementar com informações sobre prazos finais, links úteis de estudo ou avisos importantes sobre o encerramento do trimestre.</p>
+                
+                
+                <div class="article-attachments">
+                    <img src="anexo1.jpg" alt="Anexo 1 da atividade">
+                    <img src="anexo2.jpg" alt="Anexo 2 da atividade">
+                </div>
+
+                
+                <button data-emoji="estudando">📚 <span>0</span></button>
+                <button data-emoji="desespero">😱 <span>0</span></button>
+            </div>
+        </article>
     </main>
 
     <script>
@@ -141,14 +181,14 @@
                 const buttons = article.querySelectorAll("button");
                 const storageKey = `reacted_${articleId}`;
 
-                // Verifica se o usuário já votou neste artigo antes e atualiza a tela
+                
                 const savedReaction = localStorage.getItem(storageKey);
                 if (savedReaction) {
                     const activeBtn = article.querySelector(`button[data-emoji="${savedReaction}"]`);
                     if (activeBtn) {
                         activeBtn.classList.add("active");
                         let counter = activeBtn.querySelector("span");
-                        counter.textContent = "1"; // Garante que exibe 1 se o usuário já votou localmente
+                        counter.textContent = "1"; 
                     }
                 }
 
@@ -158,13 +198,12 @@
                         const currentReaction = localStorage.getItem(storageKey);
 
                         if (currentReaction === emoji) {
-                            // Clicou no mesmo emoji: desfaz o voto
                             localStorage.removeItem(storageKey);
                             updateCounter(button, -1);
                             button.classList.remove("active");
                         } 
                         else if (currentReaction) {
-                            // Trocou de emoji: tira o ponto do antigo e coloca no novo
+                            
                             const oldButton = article.querySelector(`button[data-emoji="${currentReaction}"]`);
                             if (oldButton) {
                                 updateCounter(oldButton, -1);
@@ -176,7 +215,7 @@
                             button.classList.add("active");
                         } 
                         else {
-                            // Primeiro voto no artigo
+                            
                             localStorage.setItem(storageKey, emoji);
                             updateCounter(button, 1);
                             button.classList.add("active");
@@ -193,4 +232,3 @@
         });
     </script>
 </body>
-</html>
